@@ -96,6 +96,11 @@
       var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
       return regex.test(password);
     }
+     $("#phoneno").on("input", function () {
+      let value = $(this).val().replace(/\D/g, ''); // Remove non-digits
+      if (value.length > 10) value = value.slice(0, 10);
+      $(this).val(value);
+    });
     $("#submitbutton").click(function () {
       // Clear previous error and success messages
       $("#errors").html("");
@@ -134,13 +139,12 @@ $('#toggle-password').click(function () {
             passwordField.attr("type", type);
             $(this).toggleClass("fa-eye fa-eye-slash");
         });
-        $('#toggle-confirmPassword').click(function(){
-          var confirmPassworField=$("confirm-pwd");
-          var type=confirmPassworField.attr("type")==="password"? "text" :"password";
-          confirmPassworField.attr("type",type);
-          $(this).toggleClass("fa-eye fa-eye-slash");
-        });
-
+         $('#toggle-confirmPassword').click(function () {
+      var confirmPasswordField = $("#confirm-pwd");
+      var type = confirmPasswordField.attr("type") === "password" ? "text" : "password";
+      confirmPasswordField.attr("type", type);
+      $(this).toggleClass("fa-eye fa-eye-slash");
+    });
   </script>
 </body>
 
